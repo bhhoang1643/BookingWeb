@@ -1,0 +1,93 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fdfaf7; 
+  overflow-x: hidden;
+  color: #5b4227; 
+}
+
+
+.container {
+  max-width: 100%;
+  padding: 40px 20px 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.customer-card {
+  max-width: 600px;
+  width: 100%;
+  padding: 30px;
+  border-radius: 20px;
+  color: #5b4227;
+  text-align: start;
+  margin: 0 auto;
+  background-color: #ffffff;
+  box-shadow: 0 0 12px rgba(139, 94, 60, 0.1); 
+}
+
+.customer-card h3 {
+  text-align: center;
+  font-weight: bold;
+  color: #8b5e3c;
+}
+
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #e9aa4a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+}
+
+
+.btn {
+  background-color: #8b5e3c;
+  color: #fff;
+  border: none;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background-color: #5b4227;
+}
+
+/* Readonly input */
+input[readonly] {
+  background-color: #f8f0e9;
+  color: #5b4227;
+  cursor: not-allowed;
+}
+
+
+.animate-pop {
+  animation: pop-in 0.5s ease-out;
+}
+.fade-in {
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes pop-in {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

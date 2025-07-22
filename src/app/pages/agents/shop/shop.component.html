@@ -1,0 +1,60 @@
+<div class="shop-page">
+  <div class="shop-header">
+    <form (ngSubmit)="saveShop()" class="shop-form">
+      <div class="form-row">
+        <div class="form-group">
+          <input
+            type="text"
+            [(ngModel)]="newShop.location"
+            name="location"
+            placeholder="Enter shop location"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="text"
+            [(ngModel)]="newShop.phoneNumber"
+            name="phoneNumber"
+            placeholder="Enter phone number"
+          />
+        </div>
+        <button class="add-button" type="submit">
+          {{ selectedShop ? 'Update' : 'Add New' }}
+        </button>
+        <button class="cancel-button" type="button" (click)="clearForm()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="shop-table-container">
+    <table class="shop-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Shop Location</th>
+          <th>Phone Number</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let shop of shops">
+          <td>{{ shop.id }}</td>
+          <td>{{ shop.location }}</td>
+          <td>{{ shop.phoneNumber }}</td>
+          <td>
+            <div class="action-buttons">
+              <button class="edit-button" (click)="editShop(shop)">
+                <i class="edit-icon"></i>
+              </button>
+              <button class="delete-button" (click)="deleteShop(shop.id)">
+                <i class="delete-icon"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

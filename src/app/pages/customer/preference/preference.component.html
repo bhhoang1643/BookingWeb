@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <h2 class="text-center text-primary-custom mb-4 fw-bold">
+    <i class="bi bi-scissors text-accent"></i> Your Haircut Preferences
+  </h2>
+
+  <!-- Style Selection Form -->
+  <div class="d-flex flex-column flex-md-row gap-3 justify-content-center mb-4">
+    <select class="form-select w-100 w-md-50" [(ngModel)]="selectedStyleTagId">
+      <option value="0" disabled selected>-- Choose a style --</option>
+      <option *ngFor="let tag of styleTags" [value]="tag.id">{{ tag.name }}</option>
+    </select>
+    <button class="btn btn-accent w-100 w-md-25" (click)="addPreference()">
+      <i class="bi bi-plus-circle"></i> Add Preference
+    </button>    
+  </div>
+
+  <!-- Preference List -->
+  <div class="card shadow">
+    <div class="card-header bg-dark-custom text-white fw-semibold">
+      <i class="bi bi-list-stars"></i> Your Selected Preferences
+    </div>
+    <ul class="list-group list-group-flush">
+      <li *ngIf="preferences.length === 0" class="list-group-item text-muted text-center">
+        No preferences yet. Add one now!
+      </li>
+      <li *ngFor="let p of preferences" class="list-group-item d-flex justify-content-between align-items-center">
+        <span class="fw-medium">{{ p.styleTagName }}</span>
+        <button class="btn btn-sm btn-outline-danger" (click)="deletePreference(p.id!)">
+          <i class="bi bi-trash3"></i> Remove
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

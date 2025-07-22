@@ -1,0 +1,62 @@
+.dashboard-container {
+  background-color: #0d0d0d;
+  min-height: 100vh;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+.md\:grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.xl\:grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.dashboard-card {
+  background-color: #111;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid #222;
+  background-color: #111;
+}
+
+.card-title {
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 260px;
+}
+
+
+@media (max-width: 768px) {
+  .dashboard-card {
+    padding: 16px;
+  }
+}

@@ -1,0 +1,43 @@
+<div class="dashboard-container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-title">Total Customers</div>
+        <div class="stat-value">{{ dashboardData.totalCustomer || 0 }}</div>
+      </div>
+  
+      <div class="stat-card">
+        <div class="stat-title">Total Agents</div>
+        <div class="stat-value">{{ dashboardData.totalAgent || 0 }}</div>
+      </div>
+  
+      <div class="stat-card">
+        <div class="stat-title">New Accounts (7 Days)</div>
+        <div class="stat-value">{{ dashboardData.newAccountsThisWeek || 0 }}</div>
+      </div>
+  
+      <div class="stat-card">
+        <div class="stat-title">Agent Packages</div>
+        <div class="stat-value">{{ dashboardData.totalPackages || 0 }}</div>
+      </div>
+  
+      <div class="stat-card">
+        <div class="stat-title">Total Revenue</div>
+        <div class="stat-value">{{ dashboardData.totalRevenue | number: '1.0-0' }} VND</div>
+      </div>
+  
+      <div class="stat-card">
+        <div class="stat-title">Total Bookings</div>
+        <div class="stat-value">{{ dashboardData.totalBookings || 0 }}</div>
+      </div>
+    </div>
+  
+    <div class="charts-section">
+      <h3 class="chart-title">Monthly Revenue Overview</h3>
+      <canvas baseChart
+        [data]="chartConfig.data"
+        [options]="chartConfig.options"
+        [type]="chartConfig.type">
+      </canvas>
+    </div>
+  </div>
+  

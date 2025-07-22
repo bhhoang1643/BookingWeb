@@ -1,0 +1,62 @@
+/* Table styling */
+.table th,
+.table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* Make sure product name wraps nicely */
+td:nth-child(2) {
+  text-align: left;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Adjust input field in quantity */
+input[type="number"] {
+  width: 70px;
+  text-align: center;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .table {
+    font-size: 14px;
+  }
+
+  .table th,
+  .table td {
+    padding: 8px;
+  }
+
+  h5 {
+    font-size: 16px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
+
+/* Extra mobile small screen */
+@media (max-width: 480px) {
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .d-flex.justify-content-between h5 {
+    margin-bottom: 10px;
+  }
+}

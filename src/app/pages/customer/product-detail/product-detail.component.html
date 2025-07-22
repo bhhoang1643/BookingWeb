@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <div class="row align-items-center">
+   
+    <div class="col-md-6 text-center">
+      <img
+        [src]="product.image || '/assets/placeholder.png'"
+        alt="{{ product.name }}"
+        class="img-fluid rounded shadow"
+        style="max-height: 350px; object-fit: contain;"
+      />
+    </div>
+
+ 
+    <div class="col-md-6">
+      <h2 class="fw-bold">{{ product.name }}</h2>
+      <p class="text-muted">{{ product.description }}</p>
+      <div class="d-flex align-items-center my-3">
+        <button class="btn btn-danger me-2" (click)="decreaseQty()">➖</button>
+        <input
+          type="text"
+          [(ngModel)]="quantity"
+          class="form-control text-center me-2"
+          style="width: 60px;"
+        />
+        <button class="btn btn-success" (click)="increaseQty()">➕</button> 
+      </div>
+      <p class="fw-bold">Giá: {{ product.price | number }} VND</p>
+      <button class="btn btn-outline-primary mt-2" (click)="addToCart(product)">
+        🛒 Add To Cart
+      </button>
+    </div>
+  </div>
+</div>

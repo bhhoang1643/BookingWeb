@@ -1,0 +1,68 @@
+.footer {
+  background-color: #f6f3ee;
+  color: #3d3d3d;
+  padding: 30px 20px;
+  font-size: 14px;
+  margin-top: auto;
+  width: 100%;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+  flex: 1;
+  min-width: 200px;
+  padding: 10px;
+  text-align: center;
+}
+
+.footer-left img {
+  width: 80px;
+  margin-bottom: 8px;
+}
+
+.company-name {
+  font-weight: 500;
+  color: #a0895b;
+}
+
+.footer-center p,
+.footer-right p {
+  margin: 5px 0;
+  font-weight: 500;
+}
+
+.footer-center span {
+  color: #3d3d3d;
+}
+
+.footer-center a {
+  color: #3b5998;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 6px;
+  transition: color 0.3s ease;
+}
+
+.footer-center a:hover {
+  color: #a0895b;
+  text-decoration: underline;
+}
+
+.fa-facebook-official {
+  margin-right: 6px;
+  font-size: 16px;
+}

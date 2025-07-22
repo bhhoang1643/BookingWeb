@@ -1,0 +1,97 @@
+:root {
+  --primary-dark: #5b4227;     
+  --primary-accent: #e9aa4a;  
+  --primary-light: #fdfaf7;   
+  --accent-hover: #d28d2d;
+  --white: #ffffff;
+  --text-default: #212529;
+}
+
+body {
+  color: var(--text-default); 
+  background-color: var(--primary-light);
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Container */
+.container {
+  max-width: 700px;
+  margin: auto;
+}
+
+/* Card */
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #e8dccc;
+  background-color: var(--white);
+}
+
+.card-header {
+  font-size: 1.2rem;
+  background-color: var(--primary-dark);
+  color: var(--white);
+}
+
+.text-primary-custom {
+  color: var(--primary-dark);
+}
+
+.text-accent {
+  color: var(--primary-accent);
+}
+
+
+.btn {
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.btn-accent {
+  background-color: var(--primary-accent) !important;
+  color: var(--white) !important;
+  border: 1px solid var(--primary-accent) !important;
+}
+
+.btn-accent:hover {
+  background-color: #a0895b;
+  border-color: var(--accent-hover) !important;
+  color: var(--white) !important;
+}
+
+/* Form */
+select.form-select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d4c3ae;
+  color: var(--primary-dark);
+  background-color: var(--white);
+}
+
+.list-group-item {
+  font-size: 15px;
+  color: var(--primary-dark);
+}
+
+
+.btn-outline-danger {
+  color: #dc3545;
+  border-color: #dc3545;
+  background-color: transparent;
+}
+
+.btn-outline-danger:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .w-md-50 {
+    width: 50%;
+  }
+
+  .w-md-25 {
+    width: 25%;
+  }
+}

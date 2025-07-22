@@ -1,0 +1,90 @@
+<div class="container-fluid p-4">
+  <div class="text-end mb-3">
+    <h5 class="fw-bold text-success">
+      Revenue: {{ totalAmount | number:'1.0-0' }} VND
+    </h5>
+  </div> 
+
+  <div class="row mb-4">
+    <div class="col-md-4">
+      
+      <input class="form-control" [formControl]="stylistFilter" placeholder="Name stylist...">
+    </div>
+    <div class="col-md-4">
+   
+      <select class="form-select" [formControl]="shopFilter">
+        <option value="">All shop</option>
+        <option *ngFor="let shop of shopOptions" [value]="shop">{{ shop }}</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+    
+      <input type="date" class="form-control" [formControl]="dateFilter">
+    </div>
+    <div class="col-md-4 d-flex align-items-end gap-2">
+      <button class="btn btn-primary mt-3" (click)="applyFilters()">Apply</button>
+      <button class="btn btn-secondary" (click)="clearFilters()">Cancel</button>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Day</th>
+          <th>Shop</th>
+          <th>Phone Number</th>
+          <th>Stylist</th>
+          <th>Service</th>
+          <th>Total Price</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let b of pagedBookings">
+          <td>{{ b.bookingId }}</td>
+          <td>{{ b.datetime | date:'dd/MM/yyyy HH:mm' }}</td>
+          <td>{{ b.shopLocation }}</td>
+          <td>{{ b.customerPhone }}</td>
+          <td>{{ b.stylistName }}</td>
+          <td>{{ getServiceNames(b.services) }}</td>
+          <td>{{ b.totalPrice | number }} VND</td>
+          <td>
+            <span class="badge" 
+              [ngClass]="{
+                'bg-success': b.paymentStatus?.toLowerCase() === 'paid', 
+                'bg-warning': b.paymentStatus?.toLowerCase() === 'unpaid'
+              }">
+              {{ b.paymentStatus?.toLowerCase() === 'paid' ? 'Paid' : 'Not yet paid' }}
+            </span>
+          </td>
+          <td>
+            <button *ngIf="b.paymentStatus?.toLowerCase() === 'unpaid'" 
+                    class="btn btn-sm btn-success" 
+                    (click)="confirmPayment(b.bookingId)">
+              Confirm
+            </button>
+            <span *ngIf="b.paymentStatus?.toLowerCase() === 'paid'" class="text-muted">✔</span>
+          </td>
+        </tr>
+      </tbody>        
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <nav *ngIf="totalPages > 1">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="goToPage(currentPage - 1)">«</button>
+      </li>
+      <li class="page-item" *ngFor="let p of [].constructor(totalPages); let i = index" [class.active]="currentPage === i+1">
+        <button class="page-link" (click)="goToPage(i+1)">{{ i+1 }}</button>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <button class="page-link" (click)="goToPage(currentPage + 1)">»</button>
+      </li>
+    </ul>
+  </nav>
+</div>

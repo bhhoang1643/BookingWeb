@@ -1,0 +1,158 @@
+.account-page {
+  padding: 24px;
+  width: 100%;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  color: #e0e0e0;
+}
+
+/* Form section */
+.account-header {
+  margin-bottom: 24px;
+}
+
+.account-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+
+.form-group input,
+.form-group select {
+  background-color: #2a2a2a;
+  border: 1px solid #555;
+  color: #eee;
+  border-radius: 6px;
+  padding: 8px 12px;
+  height: 40px;
+  min-width: 200px;
+  font-size: 14px;
+}
+
+/* Buttons */
+.add-button,
+.reset-button {
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.add-button {
+  background: linear-gradient(90deg, #00c851, #33b5e5);
+  color: white;
+}
+
+.add-button:hover {
+  opacity: 0.9;
+}
+
+.reset-button {
+  background-color: #ff9800;
+  color: white;
+}
+
+.reset-button:hover {
+  background-color: #e67e22;
+}
+
+/* Table */
+.account-table-container {
+  background-color: #0d0d0d;
+  border: 1px solid #1a1a1a;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.account-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.account-table th,
+.account-table td {
+  padding: 16px;
+  text-align: center;
+}
+
+.account-table th {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.account-table td {
+  background-color: #0d0d0d;
+  color: #e0e0e0;
+}
+
+.account-table tr:hover td {
+  background-color: #1e1e1e;
+}
+
+/* Status Colors */
+.active {
+  color: #00e676;
+  font-weight: bold;
+}
+
+.inactive {
+  color: #f44336;
+  font-weight: bold;
+}
+
+/* Action buttons */
+/* Action buttons - mới style giống nút gradient */
+.disable-button,
+.delete-button {
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  height: 36px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Disable: Gradient xanh lá cây đậm như "Register" */
+.disable-button {
+  background: linear-gradient(90deg, #00c851, #33b5e5);
+  color: white;
+}
+
+.disable-button:hover {
+  opacity: 0.9;
+}
+
+/* Delete: Màu cam như "Reset" */
+.delete-button {
+  background-color: #ff9800;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #e67e22;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+  }
+}

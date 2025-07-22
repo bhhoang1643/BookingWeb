@@ -1,0 +1,69 @@
+<div class="account-page">
+  <div class="account-header">
+    <form [formGroup]="accountForm" (ngSubmit)="onSubmit()" class="account-form">
+      <div class="form-row">
+        <div class="form-group">
+          <input type="text" formControlName="username" placeholder="Username" />
+        </div>
+        <div class="form-group">
+          <input type="password" formControlName="password" placeholder="Password" />
+        </div>
+        <div class="form-group">
+          <input type="email" formControlName="email" placeholder="Email" />
+        </div>
+        <div class="form-group">
+          <input type="text" formControlName="phoneNumber" placeholder="Phone Number" />
+        </div>
+        <div class="form-group">
+          <select formControlName="role">
+            <option value="CUSTOMER">Customer</option>
+            <option value="AGENT">Agent</option>
+            <option value="ADMIN">Admin</option>
+          </select>
+        </div>
+        <button class="add-button" type="submit">
+          {{ accountForm.get('accountId')?.value ? 'Update' : 'Register Account' }}
+        </button>
+        <button class="reset-button" type="button" (click)="resetForm()">Reset</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="account-table-container">
+    <table class="account-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Phone</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of accounts">
+          <td>{{ account.accountId }}</td>
+          <td>{{ account.username }}</td>
+          <td>{{ account.email }}</td>
+          <td>{{ account.role }}</td>
+          <td [ngClass]="{ 'active': account.status === 'ACTIVE', 'inactive': account.status === 'INACTIVE' }">
+            {{ account.status }}
+          </td>
+          <td>{{ account.phoneNumber }}</td>
+          <td>
+            <div class="action-buttons">
+              <button class="disable-button" (click)="disable(account.accountId!)">
+                Disable
+              </button>
+              <button class="delete-button" (click)="delete(account.accountId!)">
+                Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

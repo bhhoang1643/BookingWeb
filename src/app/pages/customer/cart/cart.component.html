@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <h3 class="mb-3">🛒 Your Shopping Cart</h3>
+
+  <table class="table table-striped table-bordered" *ngIf="cart.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th style="width: 50px;">#</th>
+        <th style="min-width: 200px;">Product Name</th>
+        <th style="width: 120px;">Price</th>
+        <th style="width: 120px;">Quantity</th>
+        <th style="width: 150px;">Subtotal</th>
+        <th style="width: 100px;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cart; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td style="word-wrap: break-word;">{{ item.name }}</td>
+
+        <td>{{ item.productPrice | number }} VND</td>
+        <td>
+          <input
+            type="number"
+            min="1"
+            [(ngModel)]="item.quantity"
+            (change)="updateQuantity(i)"
+            class="form-control text-center"
+            style="max-width: 80px;"
+          />
+        </td>
+        <td>{{ item.productPrice * item.quantity | number }} VND</td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="removeItem(i)">
+            🗑 Remove
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="cart.length === 0" class="alert alert-info text-center">
+    Your cart is currently empty.
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mt-4" *ngIf="cart.length > 0">
+    <h5>
+      Total Payment:
+      <span class="text-primary fw-bold">{{ totalAmount | number }} VND</span>
+    </h5>
+    <button class="btn btn-success px-4" (click)="checkout()">Checkout</button>
+  </div>
+</div>

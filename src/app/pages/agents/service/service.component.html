@@ -1,0 +1,73 @@
+<div class="service-page">
+  <div class="service-header">
+    <button class="add-button" (click)="openModal()">Add Service</button>
+  </div>
+
+  <div class="service-table-container">
+    <table class="service-table">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let service of services">
+          <td>
+            <div class="service-image">
+              <img [src]="service.image || '/assets/placeholder.png'" [alt]="service.name" />
+            </div>
+          </td>
+          <td>{{ service.name }}</td>
+          <td>{{ service.price | currency:'VND' }}</td>
+          <td>{{ service.status }}</td>
+          <td>
+            <div class="action-buttons">
+              <button class="edit-button" (click)="edit(service); openModal()"><i class="edit-icon"></i></button>
+              <button class="delete-button" (click)="delete(service.serviceId)"><i class="delete-icon"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal Add Service -->
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>{{ selectedService ? 'Update Service' : 'Add New Service' }}</h2>
+        <button class="close-button" (click)="closeModal()">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Service Name</label>
+            <input type="text" [(ngModel)]="newService.name" placeholder="Service Name" />
+          </div>
+          <div class="form-group">
+            <label>Price</label>
+            <input type="number" [(ngModel)]="newService.price" placeholder="Price" />
+          </div>
+          <div class="form-group full-width">
+            <label>Status</label>
+            <input type="text" [(ngModel)]="newService.status" placeholder="Status" />
+          </div>
+          <div class="form-group full-width">
+            <label>Image</label>
+            <input type="file" (change)="onFileSelected($event)" />
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="cancel-button" (click)="closeModal()">Cancel</button>
+        <button class="save-button" (click)="save()">{{ selectedService ? 'Update' : 'Add New' }}</button>
+      </div>
+    </div>
+  </div>
+</div>

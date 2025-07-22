@@ -1,0 +1,63 @@
+<div class="container d-flex justify-content-center mt-5">
+  <div class="card customer-card p-4 shadow-lg" style="max-width: 600px; width: 100%;">
+    <h3 class="text-center mb-4 ">Customer Information</h3>
+
+    <!-- Avatar -->
+    <div class="text-center mb-3">
+      <img [src]="previewImageUrl" class="profile-img rounded-circle" style="width: 150px; height: 150px; object-fit: cover;">
+    </div>
+
+    <!-- Email & Phone -->
+    <div class="text-center mb-4">
+      <p><i class="bi bi-envelope"></i> <strong> Email:</strong> {{ customer.account?.email || 'Not provided' }}</p>
+      <p><i class="bi bi-telephone"></i> <strong> Phone:</strong> {{ customer.account?.phoneNumber || 'Not provided' }}</p>
+    </div>
+
+    <!-- View mode -->
+    <div *ngIf="readonly">
+      <div class="mb-2"><strong>Birth Year:</strong> {{ customer.birthYear || 'Not updated' }}</div>
+      <div class="mb-2"><strong>Gender:</strong> {{ customer.gender || 'Not updated' }}</div>
+      <div class="mb-2"><strong>Loyalty Points:</strong> {{ customer.point || 0 }}</div>
+      <div class="mb-2"><strong>Address:</strong> {{ customer.address || 'Not updated' }}</div>
+
+      <div class="text-center mt-4">
+        <button class="btn btn-outline-primary" (click)="edit()">✏️ Edit Information</button>
+      </div>
+    </div>
+
+    <!-- Edit mode -->
+    <div *ngIf="!readonly">
+      <div class="row">
+        <div class="col-12 mb-3">
+          <label class="form-label">Birth Year</label>
+          <input type="date" class="form-control" [(ngModel)]="customer.birthYear" name="birthYear">
+        </div>
+
+        <div class="col-12 mb-3">
+          <label class="form-label">Gender</label>
+          <input type="text" class="form-control" [(ngModel)]="customer.gender" name="gender">
+        </div>
+
+        <div class="col-12 mb-3">
+          <label class="form-label">Loyalty Points</label>
+          <input type="number" class="form-control" [(ngModel)]="customer.point" name="point">
+        </div>
+
+        <div class="col-12 mb-3">
+          <label class="form-label">Address</label>
+          <input type="text" class="form-control" [(ngModel)]="customer.address" name="address">
+        </div>
+
+        <div class="col-12 mb-3">
+          <label class="form-label">Profile Picture</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)">
+        </div>
+      </div>
+
+      <div class="text-center mt-3">
+        <button class="btn btn-success me-2" (click)="saveCustomer()">💾 Save</button>
+        <button class="btn btn-outline-secondary" (click)="cancel()">❌ Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="package-wrapper">
+  <h2 class="section-title">Choose Your Subscription Package</h2>
+  <p class="section-subtitle">Unlock exclusive tools to grow your barber business</p>
+
+  <div class="package-cards">
+    <div class="package-card"
+         *ngFor="let pkg of packages"
+         [ngClass]="{ 'selected': pkg === selectedPackage }"
+         (click)="selectPackage(pkg)">
+      <div class="card-header">
+        {{ pkg.name }}
+        <span class="check-icon" *ngIf="pkg === selectedPackage">✔</span>
+      </div>
+      <div class="card-body">
+        <p class="price">{{ pkg.price | currency:'VND':'symbol' }}</p>
+        <p class="duration">Valid for {{ pkg.duration }} month(s)</p>
+        <ul class="feature-list">
+          <li>✔ Establishment management</li>
+          <li>✔ Barber management</li>
+          <li>✔ Product and service management</li>
+          <li>✔ Order & booking management</li>
+          <li>✔ Revenue & analytics dashboard</li>
+          <li>✔ Profile customization features</li>
+          <li class="discount-text">
+            🎁 Discount when purchasing long-term: 
+            <span *ngIf="pkg.duration === 6 || pkg.duration === 12">save ₫3,000,000</span>
+            <span *ngIf="pkg.duration === 3">no discount</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="selectedPackage" class="subscribe-container">
+    <button class="select-btn" (click)="subscribe(selectedPackage)">
+      Subscribe {{ selectedPackage.name }}
+    </button>
+  </div>
+</div>

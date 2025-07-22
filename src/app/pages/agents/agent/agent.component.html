@@ -1,0 +1,82 @@
+<div class="agent-container">
+  <!-- Left Section -->
+  <div class="left-section">
+    <div class="card">
+      <h2 class="section-title">My Agent</h2>
+    
+      <div *ngIf="agent" class="info-list">
+        <div class="info-row">
+          <span class="info-label">Agent Name:</span>
+          <span class="info-value">{{ agent.agentName }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Location:</span>
+          <span class="info-value">{{ agent.location }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Specialization:</span>
+          <span class="info-value">{{ agent.specialization }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Establishment:</span>
+          <span class="info-value">{{ agent.establishment }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Opening Hours:</span>
+          <span class="info-value">{{ agent.openingHours }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Professional Skills:</span>
+          <span class="info-value">{{ agent.professionalSkills }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Owner Name:</span>
+          <span class="info-value">{{ agent.ownerName }}</span>
+        </div>
+      </div>
+    
+      <div *ngIf="!agent">
+        <p>No agent profile created yet.</p>
+      </div>
+    </div>
+    
+
+    <div class="card">
+      <h2 class="section-title">Service Packages</h2>
+      <div *ngIf="packages.length > 0; else noPackage">
+        <ul>
+          <li *ngFor="let pkg of packages">
+            {{ pkg.name }} ({{ pkg.startDate }} - {{ pkg.endDate }})
+          </li>
+        </ul>
+      </div>
+      <ng-template #noPackage>
+        <p>No package purchased yet.</p>
+      </ng-template>
+    </div>
+  </div>
+
+  <!-- Right Section -->
+  <div class="right-section">
+    <div class="card">
+      <h2 class="section-title">{{ agent ? 'Edit Agent Profile' : 'Create Agent Profile' }}</h2>
+      <form (ngSubmit)="saveAgent()">
+        <div class="form-grid">
+          <div class="form-group" *ngFor="let field of [
+            {label:'Agent Name', model:'agentName'}, {label:'Location', model:'location'},
+            {label:'Specialization', model:'specialization'}, {label:'Establishment', model:'establishment'},
+            {label:'Opening Hours', model:'openingHours'}, {label:'Professional Skills', model:'professionalSkills'},
+            {label:'Owner Name', model:'ownerName'}
+          ]">
+            <label>{{ field.label }}</label>
+            <input type="text" [(ngModel)]="newAgent[field.model]" [name]="field.model" />
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn save-button">{{ agent ? 'Update' : 'Create' }}</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

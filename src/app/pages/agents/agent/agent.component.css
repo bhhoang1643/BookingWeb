@@ -1,0 +1,150 @@
+.agent-container {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+}
+
+.left-section {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.right-section {
+  flex: 1;
+}
+
+/* Card */
+.card {
+  background-color: #111;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.section-title {
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+/* Form */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .agent-container {
+    flex-direction: column;
+  }
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  color: #ccc;
+  font-size: 14px;
+}
+
+.form-group input {
+  background-color: #0d0d0d;
+  border: 1px solid #555;
+  border-radius: 6px;
+  padding: 10px;
+  color: #eee;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Buttons */
+.form-actions {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.save-button {
+  background: linear-gradient(to right, #ff8008, #ffc837);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  opacity: 0.9;
+}
+
+.cancel-button {
+  background: transparent;
+  border: 1px solid #ccc;
+  color: #ccc;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancel-button:hover {
+  background: #1e1e1e;
+}
+
+/* List */
+ul {
+  padding-left: 20px;
+  color: #eee;
+}
+
+li {
+  margin-bottom: 8px;
+}
+.left-section p,
+.left-section strong {
+  color: #ffffff;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0; 
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #333; 
+  color: #fff; 
+  font-size: 14px;
+}
+
+.info-row:last-child {
+  border-bottom: none; 
+}
+
+.info-label {
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+.info-value {
+  font-weight: 600;
+}

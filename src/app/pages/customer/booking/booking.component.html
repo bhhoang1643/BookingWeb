@@ -1,0 +1,82 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">📅 Booking</h2>
+
+  <div class="booking-container row">
+    <!-- Cột trái -->
+    <div class="booking-column col-md-6">
+      <div class="mb-3">
+        <label class="form-label">Choose Shop:</label>
+        <select class="form-select" [(ngModel)]="shopId" (change)="onShopSelected()">
+          <option [ngValue]="null">-- Choose shop --</option>
+          <option *ngFor="let shop of shops" [ngValue]="shop.id">
+            {{ getAgentNameById(shop.agentId) }} - {{ shop.location }}
+          </option>
+        </select>
+      </div>
+      
+      <div class="mb-3">
+        <label class="form-label">Choose Hair Stylist:</label>
+        <select class="form-select" [(ngModel)]="selectedStylistId" (ngModelChange)="loadUnavailableSlots(); checkConflictTime()">
+          <option [ngValue]="null">-- Choose stylist --</option>
+          <option *ngFor="let stylist of stylists" [ngValue]="stylist.stylistId">
+            {{ stylist.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Chọn ngày -->
+      <div class="mb-3">
+        <label class="form-label">Choose Day:</label>
+        <input type="date" class="form-control" [(ngModel)]="selectedDate" (change)="updateDateTime(); loadUnavailableSlots();" />
+      </div>
+
+      <!-- Chọn giờ -->
+      <div class="d-flex flex-wrap gap-2">
+        <button *ngFor="let hour of timeSlots"
+                type="button"
+                [attr.title]="unavailableSlots.includes(hour) ? '⛔ This time has been set' : ''"
+                [disabled]="unavailableSlots.includes(hour)"
+                [ngClass]="{
+                  'btn-available': !unavailableSlots.includes(hour) && selectedTime !== hour,
+                  'btn-selected': selectedTime === hour && !unavailableSlots.includes(hour),
+                  'btn-unavailable': unavailableSlots.includes(hour)
+                }"
+                class="btn"
+                (click)="selectTime(hour)">
+          {{ hour }}
+        </button>
+      </div>
+    
+      <!-- Thông báo xung đột -->
+      <div *ngIf="isDateConflict" class="invalid-feedback d-block">
+        ❌ Stylist is booked for this hour. Please choose another hour.
+      </div>
+    </div>
+
+    <!-- Cột phải -->
+    <div class="booking-column col-md-6">
+      <div class="mb-3">
+        <label class="form-label">Choose Services:</label>
+        <div *ngFor="let service of services" class="form-check">
+          <input class="form-check-input" type="checkbox" [value]="service.serviceId"
+                 (change)="toggleService(service.serviceId)"
+                 [checked]="selectedServiceIds.includes(service.serviceId)">
+          <label class="form-check-label">
+            {{ service.name }} - {{ service.price | number }} VND
+          </label>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <strong >Total:</strong>
+        <span>{{ calculateTotalPrice() | number }} VND</span>
+      </div>
+
+      <div class="d-grid">
+        <button class="btn btn-primary" (click)="submitBooking()" [disabled]="isDateConflict">
+          Confirm Booking
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<nav class="navbar">
+    <div class="left">
+        <img src="https://i.imgur.com/w8Yed9G.png" alt="Logo" routerLink="/customer/main">
+    </div>
+    <div class="center nav-links">
+      <a routerLink="/customer/product"> Product</a>
+      <a routerLink="/customer/service"> Service</a>
+      <a routerLink="/customer/preference">Preference</a>
+      <a *ngIf="username" routerLink="/customer/infor">👤 Profile</a>
+      <a *ngIf="username" class="btn btn-sm btn-outline-danger" (click)="logout()">🚪 Log Out</a>
+      <a routerLink="/customer/cart"> <i class="bi bi-cart3"></i></a> 
+    </div>
+    <div class="right loyalty-section">
+      <i class="fas fa-gem"></i> Loyalty Points:{{ points }} 
+    </div>
+  </nav>
+  

@@ -1,0 +1,154 @@
+.package-wrapper {
+  padding: 80px 20px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('https://i.imgur.com/w8Yed9G.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 280px;
+  background-attachment: fixed;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: #777;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.package-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.package-card {
+  width: 330px;
+  background-color: #fdfdfd;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.package-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 40px rgba(168, 137, 79, 0.2);
+}
+
+.package-card.selected {
+  border: 2px solid #a8894f;
+  box-shadow: 0 0 0 4px rgba(168, 137, 79, 0.15);
+}
+
+.card-header {
+  background-color: #a8894f;
+  color: white;
+  font-size: 1.4rem;
+  padding: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.check-icon {
+  background: white;
+  color: #a8894f;
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.card-body {
+  padding: 25px 20px;
+  text-align: center;
+}
+
+.price {
+  font-size: 2rem;
+  color: #111;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.duration {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 18px;
+}
+
+.feature-list {
+  list-style: none;
+  padding-left: 0;
+  text-align: left;
+  color: #444;
+  font-size: 0.95rem;
+  margin: 0 auto 10px;
+}
+
+.feature-list li {
+  margin-bottom: 4px;
+}
+
+.discount-text {
+  color: #d04f00;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.subscribe-container {
+  margin-top: 40px;
+  z-index: 99;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+
+.select-btn {
+  background-color: #a8894f;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.select-btn:hover {
+  background-color: #8a6f3c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  .package-card {
+    width: 90%;
+  }
+  .price {
+    font-size: 1.6rem;
+  }
+}

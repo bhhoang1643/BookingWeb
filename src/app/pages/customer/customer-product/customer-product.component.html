@@ -1,0 +1,95 @@
+<div class="main-content container mt-4">
+  <!-- Banner -->
+  <div class="image-section text-center mb-4">
+    <img
+      src="https://ideogram.ai/assets/image/lossless/response/hNmUZ-TuSayC0_FBHNsWKA"
+      class="img-fluid rounded shadow-sm"
+      alt="Banner image"
+    />
+  </div>
+
+  <!-- Search -->
+  <div class="section-wrapper">
+    <h2 class="section-title">Search Products By Agent</h2>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="searchText"
+      (input)="filterAndLoadProducts()"
+      placeholder="Search Agent"
+    />
+  </div>
+
+  <!-- Nếu đã chọn agent -->
+  <div *ngIf="selectedAgent" class="section-wrapper">
+    <h2 class="section-title"> {{ selectedAgent.agentName }}</h2>
+    <div class="row mt-3">
+      <!-- Sidebar Category -->
+      <div class="col-md-2">
+        <div class="category-sidebar">
+          <ul class="list-group">
+            <li
+              class="list-group-item list-group-item-action"
+              *ngFor="let category of categoryNames"
+              [class.active]="selectedCategory === category"
+              (click)="filterByCategory(category)"
+            >
+              {{ category }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Scroll Product List -->
+      <div class="col-md-10">
+        <div class="scroll-container-wrapper">
+          <button class="scroll-btn prev" (click)="scrollLeft('selected')">&#10094;</button>
+
+          <div class="scroll-product-list" id="scroll-selected">
+            <div class="product-card" *ngFor="let product of filteredProducts">
+              <a [routerLink]="['/product', product.id]" class="product-link">
+                <img [src]="product.image || '/assets/placeholder.png'" class="product-img" alt="{{ product.name }}" />
+                <div class="card-body text-center d-flex flex-column">
+                  <p class="product-name">{{ product.name }}</p>
+                  <p class="product-price">{{ product.price | number }} VND</p>
+                </div>
+              </a>
+              <button class="btn mt-auto" (click)="addToCart(product)">
+                🛒 Add to cart
+              </button>
+            </div>
+          </div>
+
+          <button class="scroll-btn next" (click)="scrollRight('selected')">&#10095;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nếu chưa chọn agent -->
+  <div *ngIf="!selectedAgent">
+    <div *ngFor="let agent of filteredAgents" class="section-wrapper">
+      <h2 class="section-title">{{ agent.agentName }}</h2>
+      <div class="scroll-container-wrapper">
+        <button class="scroll-btn prev" (click)="scrollLeft(agent.id)">&#10094;</button>
+
+        <div class="scroll-product-list" [id]="'scroll-' + agent.id">
+          <div class="product-card" *ngFor="let product of agent.products">
+            <a [routerLink]="['/product', product.id]" class="product-link">
+              <img [src]="product.image || '/assets/placeholder.png'" class="product-img" alt="{{ product.name }}" />
+              <div class="card-body text-center d-flex flex-column">
+                <p class="product-name">{{ product.name }}</p>
+                <p class="product-price">{{ product.price | number }} VND</p>
+              </div>
+            </a>
+            <button class="btn mt-auto" (click)="addToCart(product)">
+              🛒 Add to cart
+            </button>
+          </div>
+        </div>
+
+        <button class="scroll-btn next" (click)="scrollRight(agent.id)">&#10095;</button>
+      </div>
+    </div>
+  </div>
+</div>

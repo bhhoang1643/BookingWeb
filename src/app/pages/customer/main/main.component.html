@@ -1,0 +1,147 @@
+<div class="main-content">
+  <div class="image-section">
+    <img src="https://ideogram.ai/assets/image/lossless/response/hNmUZ-TuSayC0_FBHNsWKA" alt="Banner"
+      routerLink="customer/main" />
+  </div>
+  <div class="section-wrapper">
+    <h2 class="section-title">Schedule Now</h2>
+    <div class="content-sections">
+      <div class="schedule-now">
+        <form>
+          <div class="search-container">
+            <input type="text" [(ngModel)]="searchQuery" name="searchQuery" (input)="searchAgent()"
+              placeholder="Search Agent" autocomplete="off" />
+            <div class="dropdown-list" *ngIf="filteredAgents.length > 0">
+              <div class="dropdown-item" *ngFor="let agent of filteredAgents" (click)="selectAgent(agent)">
+                {{ agent.agentName }}
+              </div>
+            </div>
+          </div>
+          <button type="button" (click)="scheduleAppointment()">Schedule</button>
+          <p *ngIf="showWarning" class="warning-text">
+            ⚠️ Please Fill Full Information!
+          </p>
+        </form>
+      </div>
+
+      <div class="barber-slider-container">
+        <h2 class="section-title">Top Stylists</h2>
+        <div class="top-barber-slider-wrapper">
+          <button class="nav-btn prev" (click)="scrollLeft()">&#10094;</button>
+          <div class="barber-list" #scrollContainer>
+            <div class="barber-card" *ngFor="let stylist of topStylists; let i = index">
+              <div class="rank-number">{{ ('0' + (i + 1)).slice(-2) }}</div>
+              <img [src]="stylist.image || 'https://via.placeholder.com/200x300'" alt="Stylist" />
+              <div class="stylist-info">
+                <h4>{{ stylist.name }}</h4>
+                <p>{{ stylist.shopName }}</p>
+                <p>{{ stylist.agentName }}</p>
+              </div>
+            </div>
+          </div>
+          <button class="nav-btn next" (click)="scrollRight()">&#10095;</button>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="section-wrapper">
+      <h2 class="section-title">Top Agents</h2>
+      <div class="top-rated-agents">
+        <table class="leaderboard-table">
+          <thead>
+            <tr>
+              <th>Top</th>
+              <th>Agent</th>
+              <th>Rating</th>
+              <th>Reviews</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let agent of topRatedAgents; let i = index" [ngClass]="'rank-' + (i + 1)">
+              <td>{{ i + 1 }}</td>
+              <td>{{ agent.agentName }}</td>
+              <td>{{ agent.avgRating.toFixed(2) }}</td>
+              <td>{{ agent.count }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-wrapper">
+      <h2 class="section-title">Recent Reviews</h2>
+      <div class="form-and-review">
+        <div class="review-form-box">
+          <form (ngSubmit)="submitReview()">
+            <div>
+              <label>Choose Agent:</label>
+              <select class="form-select" [(ngModel)]="newReview.agentId" name="agent" (change)="onAgentChange()"
+                required>
+                <option [ngValue]="null">-- Choose Agent --</option>
+                <option *ngFor="let agent of allAgents" [ngValue]="agent.id">{{ agent.agentName }}</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Choose Shop:</label>
+              <select class="form-select" [(ngModel)]="newReview.shopId" name="shop" (change)="onShopChange()" required>
+                <option [ngValue]="null">-- Choose Shop --</option>
+                <option *ngFor="let shop of shops" [value]="shop.id">{{ shop.location }}</option>
+              </select>
+            </div>
+
+            <div>
+              <label>Choose Stylist:</label>
+              <select class="form-select" [(ngModel)]="newReview.hairstylistId" name="hairstylist" required>
+                <option [ngValue]="null">-- Choose Stylist --</option>
+                <option *ngFor="let stylist of stylists" [ngValue]="stylist.stylistId">
+                  {{ stylist.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="star-select">
+              <label>Rating:</label><br />
+              <span *ngFor="let star of stars; let i = index" (click)="rate(i + 1)">
+                <i class="fa" [class.fa-star]="i < newReview.rating" [class.fa-star-o]="i >= newReview.rating"></i>
+              </span>
+            </div>
+            <div>
+              <label>Comment:</label>
+              <textarea class="form-control" [(ngModel)]="newReview.comment" name="comment" required></textarea>
+            </div>
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <div class="review-section">
+          <div class="review-card" *ngFor="let r of paginatedReviews">
+            <div class="customer-info" style="display: flex; align-items: center; margin-bottom: 5px;">
+              <img [src]="r.customerImage || 'https://via.placeholder.com/32'" alt="avatar" width="32" height="32"
+                style="border-radius: 50%; margin-right: 8px;">
+              <b>{{ r.customerUsername }}</b>
+            </div>
+            <div class="review-header">
+              <div class="stars">
+                <span *ngFor="let s of [].constructor(r.rating)">⭐</span>
+              </div>
+              <span class="timestamp">{{ r.timestamp | date:'dd/MM/yyyy HH:mm' }}</span>
+            </div>
+            <div class="review-info" style="margin-top: 4px;">
+              <b>Agent:</b> {{ r.agentName }} |
+              <b>Shop:</b> {{ r.shopName }} |
+              <b>Stylist:</b> {{ r.hairstylistName || 'Unknow' }}
+            </div>
+            <div class="review-comment">{{ r.comment }}</div>
+          </div>
+          <div class="pagination">
+            <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">←</button>
+            <span> Page {{ currentPage }} / {{ totalPages }}</span>
+            <button (click)="changePage(currentPage + 1)" [disabled]="currentPage >= totalPages">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

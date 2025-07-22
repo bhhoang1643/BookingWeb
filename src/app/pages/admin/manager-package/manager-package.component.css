@@ -1,0 +1,187 @@
+.container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 30px;
+  background: #1a1a1a; /* dark background to match dashboard */
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  color: #e0e0e0;
+}
+
+h2, h3 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #ffffff;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+  justify-content: space-between;
+}
+
+.form-group {
+  flex: 1 1 45%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #bbbbbb;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #fff;
+}
+
+.form-group input::placeholder {
+  color: #888;
+}
+
+.form-buttons {
+  flex: 1 1 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+/* Buttons */
+.btn-gradient {
+  background: linear-gradient(90deg, #00c851, #33b5e5);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  height: 42px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.btn-gradient:hover {
+  opacity: 0.85;
+}
+
+.btn-orange {
+  background-color: #ff9800;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  height: 42px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-orange:hover {
+  background-color: #e67e22;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  text-align: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #333;
+}
+
+.table th {
+  background-color: #222;
+  color: #ffffff;
+}
+
+.table td {
+  background-color: #1a1a1a;
+  color: #eeeeee;
+}
+
+.table tr:hover td {
+  background-color: #2b2b2b;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+  background-color: #f39c12;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #e67e22;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}
+
+/* Status tags */
+.badge-paid {
+  color: #00e676;
+  font-weight: bold;
+}
+
+.badge-unpaid {
+  color: #e53935;
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form {
+    flex-direction: column;
+  }
+
+  .form-group {
+    flex: 1 1 100%;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-gradient,
+  .btn-orange {
+    width: 100%;
+    text-align: center;
+  }
+}

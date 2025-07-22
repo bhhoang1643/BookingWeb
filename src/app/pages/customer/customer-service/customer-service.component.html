@@ -1,0 +1,67 @@
+<div class="main-content container mt-4">
+  <!-- Banner Image Section -->
+  <div class="image-section text-center mb-4">
+    <img
+      src="https://ideogram.ai/assets/image/lossless/response/hNmUZ-TuSayC0_FBHNsWKA"
+      class="img-fluid rounded shadow-sm"
+      alt="Banner image"
+    />
+  </div>
+
+  <div class="card border-0 shadow-none"> 
+    <div class="card-body">
+      <div class="filter-section">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search Agent by Name"
+          [(ngModel)]="searchText"
+          (input)="filterServicesByAgent()"
+        />
+      </div>
+
+      <div *ngIf="filteredAgents.length > 0; else noResult">
+        <div *ngFor="let agent of filteredAgents" class="mb-5">
+          <h2 class="section-title">{{ agent.agentName }}</h2>
+          <div class="scroll-container-wrapper">
+            <button class="scroll-btn prev" (click)="scrollLeft(agent.agentId)">&#10094;</button>
+
+            <div class="scroll-product-list" [id]="'scroll-' + agent.agentId">
+              <div class="product-card" *ngFor="let service of agent.services">
+                <img
+                  [src]="service.image || '/assets/placeholder.png'"
+                  class="product-img"
+                  alt="{{ service.name }}"
+                />
+                <div class="card-body text-center d-flex flex-column">
+                  <p class="product-name">{{ service.name }}</p>
+                  <p class="product-price">{{ service.price | number }} VND</p>
+                  <span
+                    class="badge mt-auto"
+                    [ngClass]="{
+                      'bg-success': service.status === 'ACTIVE',
+                      'bg-secondary': service.status !== 'ACTIVE'
+                    }"
+                  >
+                    {{ service.status === 'ACTIVE' ? 'Active' : 'Inactive' }}
+                  </span>
+                  <button class="btn mt-2" (click)="bookNow(agent.agentId, service.serviceId)">
+                    📝 Book Now
+                  </button>                
+                </div>
+              </div>
+            </div>
+
+            <button class="scroll-btn next" (click)="scrollRight(agent.agentId)">&#10095;</button>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #noResult>
+        <div class="alert alert-warning mt-4">
+          No services found for this agent.
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
